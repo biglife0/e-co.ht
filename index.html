@@ -1,0 +1,1262 @@
+
+# Kreye paj konplè Tague Connaissance - GRATIS ak Admin Panel + Piblisite
+
+html_content = '''<!DOCTYPE html>
+<html lang="ht">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tague Connaissance - Platform Edikasyon Gratis</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1f2937;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #6b7280;
+            --gradient-ai: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--gray-100);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* ===== PIBLISITE STYLES ===== */
+        .ad-container {
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .ad-header {
+            width: 100%;
+            height: 90px;
+            margin-bottom: 1rem;
+        }
+        
+        .ad-sidebar {
+            width: 300px;
+            min-height: 250px;
+            margin: 1rem 0;
+        }
+        
+        .ad-in-content {
+            width: 100%;
+            height: 250px;
+            margin: 2rem 0;
+        }
+        
+        .ad-footer {
+            width: 100%;
+            height: 90px;
+            margin-top: 2rem;
+        }
+        
+        .ad-label {
+            font-size: 0.75rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        /* ===== HEADER ===== */
+        header {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient-ai);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient-ai);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            -webkit-text-fill-color: white;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover { color: var(--primary); }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-ai);
+            color: white;
+        }
+        
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4); }
+        
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-warning { background: var(--warning); color: white; }
+        
+        /* ===== MAIN LAYOUT ===== */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        .content-area { min-width: 0; }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: var(--gradient-ai);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .badge-gratuit {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+        
+        /* ===== SEARCH BOX ===== */
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .search-box {
+            position: relative;
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+        
+        .ai-suggestions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .ai-chip {
+            background: var(--gray-100);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--gray-200);
+        }
+        
+        .ai-chip:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* ===== COURSE GRID ===== */
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .course-thumbnail {
+            height: 180px;
+            background: var(--gradient-ai);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff0000;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        
+        .course-info { padding: 1.5rem; }
+        
+        .course-channel {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .course-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+        
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        .quality-score {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        /* ===== VIDEO MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 2rem;
+        }
+        
+        .modal-overlay.active { display: flex; }
+        
+        .video-modal {
+            background: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 1000px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-600);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            background: black;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* ===== ADMIN PANEL ===== */
+        .admin-panel {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .admin-table th,
+        .admin-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .admin-table th {
+            background: var(--gray-100);
+            font-weight: 600;
+        }
+        
+        .admin-table tr:hover {
+            background: var(--gray-100);
+        }
+        
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+        
+        .tab-btn {
+            padding: 0.75rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray-600);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* ===== SIDEBAR ===== */
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+        
+        .sidebar-widget {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .widget-title {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* ===== TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            z-index: 4000;
+            border-left: 4px solid var(--success);
+        }
+        
+        .toast.show { display: flex; }
+        
+        .toast.error { border-left-color: var(--danger); }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar { display: none; }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 1.8rem; }
+            .course-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        
+        /* ===== HIDDEN ===== */
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <!-- PIBLISITE HEADER (Google AdSense) -->
+    <div class="ad-container ad-header">
+        <div>
+            <div class="ad-label">Espace Publicitaire</div>
+            <div>Google AdSense - 970x90 ou 728x90</div>
+            <!-- Kode Google AdSense ou mete la -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+     crossorigin="anonymous"></script>
+            <!-- Ad Unit Header -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">TC</div>
+                Tague Connaissance
+            </div>
+            <div class="nav-links">
+                <a href="#" onclick="showSection('home')">🏠 Akèy</a>
+                <a href="#" onclick="showSection('courses')">📚 Kours</a>
+                <a href="#" onclick="showSection('admin')">⚙️ Admin</a>
+                <button class="btn btn-primary" onclick="toggleLogin()">👤 Konekte</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <div class="content-area">
+            
+            <!-- SECTION AKÈY -->
+            <section id="home" class="section">
+                <div class="hero">
+                    <h1>🎓 Aprann ak Tague Connaissance</h1>
+                    <p>Platform edikasyon entèlijan ki itilize AI pou jwenn meilleur kous YouTube pou ou</p>
+                    <div class="badge-gratuit">✨ TOUT GRATIS ✨</div>
+                </div>
+
+                <!-- PIBLISITE IN-CONTENT -->
+                <div class="ad-container ad-in-content">
+                    <div>
+                        <div class="ad-label">Sponsorisé</div>
+                        <div>Google AdSense - 300x250 ou 336x280</div>
+                    </div>
+                </div>
+
+                <!-- SEARCH -->
+                <div class="search-container">
+                    <h3 style="margin-bottom: 1rem;">🔍 Rechèch Entèlijan</h3>
+                    <div class="search-box">
+                        <input type="text" class="search-input" id="searchInput" 
+                               placeholder="Kisa ou vle aprann jodia? (egzanp: Python, Marketing...)"
+                               onkeypress="if(event.key==='Enter') performSearch()">
+                        <button class="btn btn-primary" onclick="performSearch()">🔍 Chèche</button>
+                    </div>
+                    <div class="ai-suggestions">
+                        <span class="ai-chip" onclick="quickSearch('Python')">🐍 Python</span>
+                        <span class="ai-chip" onclick="quickSearch('Marketing')">📱 Marketing</span>
+                        <span class="ai-chip" onclick="quickSearch('Design')">🎨 Design</span>
+                        <span class="ai-chip" onclick="quickSearch('Web Development')">💻 Web Dev</span>
+                        <span class="ai-chip" onclick="quickSearch('Data Science')">📊 Data Science</span>
+                        <span class="ai-chip" onclick="quickSearch('Langues')">🌍 Langues</span>
+                    </div>
+                </div>
+
+                <!-- REZILTA RECHÈCH -->
+                <div id="searchResults" class="hidden">
+                    <h2 class="section-title">🎯 Rezilta Rechèch</h2>
+                    <div class="course-grid" id="resultsGrid"></div>
+                </div>
+
+                <!-- KOU POPILÈ -->
+                <h2 class="section-title">⭐ Kous Popilè</h2>
+                <div class="course-grid" id="popularCourses"></div>
+            </section>
+
+            <!-- SECTION KOURS -->
+            <section id="courses" class="section hidden">
+                <h2 class="section-title">📚 Tout Kous</h2>
+                <div class="course-grid" id="allCourses"></div>
+            </section>
+
+            <!-- SECTION ADMIN -->
+            <section id="admin" class="section hidden">
+                <div class="admin-panel">
+                    <div class="admin-header">
+                        <h2>⚙️ Panel Administratè</h2>
+                        <span class="status-badge status-active">ONLINE</span>
+                    </div>
+
+                    <!-- TABS -->
+                    <div class="tabs">
+                        <button class="tab-btn active" onclick="showTab('add-video')">➕ Ajoute Videyo</button>
+                        <button class="tab-btn" onclick="showTab('manage-videos')">📹 Jere Videyo</button>
+                        <button class="tab-btn" onclick="showTab('ads-settings')">📢 Piblisite</button>
+                        <button class="tab-btn" onclick="showTab('stats')">📊 Statistik</button>
+                    </div>
+
+                    <!-- TAB: AJOUTE VIDEO -->
+                    <div id="add-video" class="tab-content active">
+                        <h3>Ajoute Nouvo Videyo YouTube</h3>
+                        <form id="addVideoForm" onsubmit="handleAddVideo(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>ID Videyo YouTube *</label>
+                                    <input type="text" id="videoId" required 
+                                           placeholder="Ex: _uQrJ0TkZlc"
+                                           onchange="previewVideo()">
+                                    <small style="color: var(--gray-600);">
+                                        ID a se pati ki apre "youtube.com/watch?v="
+                                    </small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Kategori *</label>
+                                    <select id="videoCategory" required>
+                                        <option value="">Chwazi yon kategori</option>
+                                        <option value="Programmation">💻 Programasyon</option>
+                                        <option value="Marketing">📱 Marketing</option>
+                                        <option value="Design">🎨 Design</option>
+                                        <option value="Business">💼 Biznis</option>
+                                        <option value="Langues">🌍 Lang</option>
+                                        <option value="Data Science">📊 Data Science</option>
+                                        <option value="Autre">📦 Lòt</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tit Videyo *</label>
+                                <input type="text" id="videoTitle" required 
+                                       placeholder="Tit konplè videyo a">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Deskripsyon</label>
+                                <textarea id="videoDescription" rows="3" 
+                                          placeholder="Deskripsyon videyo a..."></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Chèn YouTube *</label>
+                                    <input type="text" id="videoChannel" required 
+                                           placeholder="Ex: Programming with Mosh">
+                                </div>
+                                <div class="form-group">
+                                    <label>Dire (egzanp: 6:30:00)</label>
+                                    <input type="text" id="videoDuration" 
+                                           placeholder="Ex: 2:30:00">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Kantite Vizyon (egzanp: 15M)</label>
+                                    <input type="text" id="videoViews" 
+                                           placeholder="Ex: 15M, 2.5K">
+                                </div>
+                                <div class="form-group">
+                                    <label>Kalite (0-100)</label>
+                                    <input type="number" id="videoQuality" 
+                                           min="0" max="100" value="80">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Ikon (emoji)</label>
+                                <input type="text" id="videoThumbnail" 
+                                       placeholder="Ex: 🐍 📱 🎨 💻 📊" maxlength="2">
+                            </div>
+
+                            <!-- PREVIEW -->
+                            <div id="videoPreview" class="hidden" style="margin: 1rem 0;">
+                                <label>Aperçu Videyo:</label>
+                                <div style="position: relative; padding-bottom: 56.25%; height: 0; background: #000; border-radius: 8px; overflow: hidden;">
+                                    <iframe id="previewFrame" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                                            allowfullscreen></iframe>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success" style="width: 100%;">
+                                ➕ Ajoute Videyo
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- TAB: JERE VIDEO -->
+                    <div id="manage-videos" class="tab-content">
+                        <h3>Jere Tout Videyo</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tit</th>
+                                    <th>Kategori</th>
+                                    <th>Kalite</th>
+                                    <th>Aksyon</th>
+                                </tr>
+                            </thead>
+                            <tbody id="videosTableBody">
+                                <!-- Ranpli pa JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- TAB: PIBLISITE -->
+                    <div id="ads-settings" class="tab-content">
+                        <h3>📢 Konfigirasyon Piblisite</h3>
+                        <form id="adsForm" onsubmit="handleSaveAds(event)">
+                            <div class="form-group">
+                                <label>Google AdSense Client ID</label>
+                                <input type="text" id="adsenseClient" 
+                                       placeholder="ca-pub-XXXXXXXXXXXXXXXX"
+                                       value="ca-pub-XXXXXXXXXXXXXXXX">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Header Ad Slot ID</label>
+                                <input type="text" id="adSlotHeader" placeholder="XXXXXXXXXX">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sidebar Ad Slot ID</label>
+                                <input type="text" id="adSlotSidebar" placeholder="XXXXXXXXXX">
+                            </div>
+
+                            <div class="form-group">
+                                <label>In-Content Ad Slot ID</label>
+                                <input type="text" id="adSlotContent" placeholder="XXXXXXXXXX">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Kòd Piblisite Custom (HTML/JavaScript)</label>
+                                <textarea id="customAdCode" rows="5" 
+                                          placeholder="Kole kòd piblisite ou la..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" id="enableAds" checked> 
+                                    Aktive Piblisite
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                💾 Anrejistre Konfigirasyon
+                            </button>
+                        </form>
+
+                        <div style="margin-top: 2rem; padding: 1rem; background: #f0fdf4; border-radius: 8px;">
+                            <h4>📋 Enstriksyon pou Google AdSense:</h4>
+                            <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                                <li>Kreye kont <a href="https://www.google.com/adsense" target="_blank">Google AdSense</a></li>
+                                <li>Ajoute sit ou a epi verifye li</li>
+                                <li>Kreye yonites piblisite (Ad Units)</li>
+                                <li>Kole ID yo nan fòm ki anwo a</li>
+                                <li>Anrejistre epi piblisite yo ap parèt</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- TAB: STATISTIK -->
+                    <div id="stats" class="tab-content">
+                        <h3>📊 Statistik Platform</h3>
+                        <div class="course-grid" style="margin-top: 1rem;">
+                            <div style="background: var(--gradient-ai); color: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;" id="statTotalVideos">0</div>
+                                <div>Total Videyo</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;" id="statCategories">0</div>
+                                <div>Kategori</div>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 1.5rem; border-radius: 12px; text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: bold;" id="statViews">0</div>
+                                <div>Vizyatè Jodia</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <!-- PIBLISITE SIDEBAR -->
+            <div class="ad-container ad-sidebar">
+                <div>
+                    <div class="ad-label">Piblisite</div>
+                    <div>Google AdSense<br>300x250</div>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h4 class="widget-title">📢 Anons</h4>
+                <div style="padding: 1rem; background: var(--gray-100); border-radius: 8px; text-align: center;">
+                    <p>Espas disponib pou piblisite ou!</p>
+                    <button class="btn btn-primary" style="margin-top: 0.5rem; width: 100%;">Kontakte Nou</button>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h4 class="widget-title">🏆 Top Kategori</h4>
+                <div id="topCategories" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Ranpli pa JS -->
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- PIBLISITE FOOTER -->
+    <div class="ad-container ad-footer">
+        <div>
+            <div class="ad-label">Espace Publicitaire</div>
+            <div>Google AdSense - 970x90</div>
+        </div>
+    </div>
+
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="modal-overlay" onclick="closeVideoModal(event)">
+        <div class="video-modal" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h3 id="modalTitle">Lecture Videyo</h3>
+                <button class="close-btn" onclick="closeVideoModal()">&times;</button>
+            </div>
+            <div class="video-container">
+                <iframe id="videoFrame" allowfullscreen 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                </iframe>
+            </div>
+            <div style="padding: 1rem; background: var(--gray-100);">
+                <p id="modalDescription" style="color: var(--gray-600);"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast">
+        <span id="toastIcon">✓</span>
+        <span id="toastMessage">Operasyon reyisi</span>
+    </div>
+
+    <script>
+        // ===== BASE DE DONNÉES LOCALE =====
+        let courses = JSON.parse(localStorage.getItem('tc_courses')) || [
+            {
+                id: 'python1',
+                videoId: '_uQrJ0TkZlc',
+                title: 'Python pou Debutan - Kours Konplè 2024',
+                description: 'Aprann Python depi nan zero ak kours sa a ki kouvri tout baz rive nan konsep avanse.',
+                channel: 'Programming with Mosh',
+                duration: '6:30:00',
+                views: '15M',
+                thumbnail: '🐍',
+                category: 'Programmation',
+                quality: 98
+            },
+            {
+                id: 'marketing1',
+                videoId: 'bDJKce6-PIg',
+                title: 'Marketing Digital Konplè - Strateji 2024',
+                description: 'Metrize marketing digital: SEO, rezo sosyal, email marketing ak analytics.',
+                channel: 'HubSpot Marketing',
+                duration: '4:15:00',
+                views: '2.5M',
+                thumbnail: '📱',
+                category: 'Marketing',
+                quality: 95
+            },
+            {
+                id: 'design1',
+                videoId: 'IyR_uYsRdPs',
+                title: 'Photoshop pou Debutan - Gid Konplè',
+                description: 'Aprann kijan pou itilize Photoshop tankou yon pwofesyonèl.',
+                channel: 'Envato Tuts+',
+                duration: '3:45:00',
+                views: '3M',
+                thumbnail: '🎨',
+                category: 'Design',
+                quality: 92
+            },
+            {
+                id: 'web1',
+                videoId: 'nu_pCVPKzTk',
+                title: 'Devlopman Web Full Stack 2024',
+                description: 'Devlope web full stack: HTML, CSS, JavaScript, Node.js ak plis.',
+                channel: 'freeCodeCamp',
+                duration: '12:00:00',
+                views: '8M',
+                thumbnail: '💻',
+                category: 'Programmation',
+                quality: 99
+            },
+            {
+                id: 'data1',
+                videoId: 'jGwO_UgTS7I',
+                title: 'Data Science ak Machine Learning',
+                description: 'Entwodiksyon konplè nan data science ak machine learning ak Python.',
+                channel: 'Stanford Online',
+                duration: '15:00:00',
+                views: '5M',
+                thumbnail: '📊',
+                category: 'Data Science',
+                quality: 97
+            },
+            {
+                id: 'english1',
+                videoId: 'dQw4w9WgXcQ',
+                title: 'Anglè Kouran an 3 Mwa',
+                description: 'Aprann anglè natirèlman ak teknik ki pwouve.',
+                channel: 'English with Lucy',
+                duration: '2:30:00',
+                views: '10M',
+                thumbnail: '🌍',
+                category: 'Langues',
+                quality: 94
+            }
+        ];
+
+        // ===== INITIALISATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCourses();
+            updateStats();
+            renderCategories();
+        });
+
+        // ===== NAVIGATION =====
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabId === 'manage-videos') renderVideosTable();
+            if (tabId === 'stats') updateStats();
+        }
+
+        // ===== RENDER KOU =====
+        function renderCourses(filtered = null) {
+            const container = document.getElementById('popularCourses');
+            const allContainer = document.getElementById('allCourses');
+            const data = filtered || courses;
+            
+            const html = data.map(course => `
+                <div class="course-card" onclick="openVideo('${course.id}')">
+                    <div class="course-thumbnail">
+                        <div class="course-badge">YouTube</div>
+                        <div>${course.thumbnail}</div>
+                    </div>
+                    <div class="course-info">
+                        <div class="course-channel">${course.channel}</div>
+                        <h3 class="course-title">${course.title}</h3>
+                        <div class="course-meta">
+                            <span>⏱️ ${course.duration}</span>
+                            <span>👁️ ${course.views}</span>
+                        </div>
+                        <div class="quality-score">
+                            ⭐ Score: ${course.quality}%
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            if (filtered) {
+                document.getElementById('resultsGrid').innerHTML = html;
+                document.getElementById('searchResults').classList.remove('hidden');
+            } else {
+                container.innerHTML = html;
+                allContainer.innerHTML = html;
+            }
+        }
+
+        // ===== RECHÈCH =====
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) return;
+            
+            const keywords = query.split(' ').filter(k => k.length > 2);
+            
+            const results = courses.map(course => {
+                let score = 0;
+                const text = (course.title + ' ' + course.category + ' ' + course.description).toLowerCase();
+                
+                keywords.forEach(keyword => {
+                    if (text.includes(keyword)) score += 10;
+                    if (course.title.toLowerCase().includes(keyword)) score += 20;
+                    if (course.category.toLowerCase().includes(keyword)) score += 15;
+                });
+                
+                score += course.quality / 5;
+                return { ...course, relevanceScore: score };
+            }).filter(c => c.relevanceScore > 5)
+              .sort((a, b) => b.relevanceScore - a.relevanceScore);
+            
+            renderCourses(results);
+            showToast(`✓ ${results.length} rezilta jwenn`, 'success');
+        }
+
+        function quickSearch(topic) {
+            document.getElementById('searchInput').value = topic;
+            performSearch();
+        }
+
+        // ===== VIDEO PLAYER =====
+        function openVideo(courseId) {
+            const course = courses.find(c => c.id === courseId);
+            if (!course) return;
+            
+            document.getElementById('modalTitle').textContent = course.title;
+            document.getElementById('modalDescription').textContent = course.description;
+            
+            const iframe = document.getElementById('videoFrame');
+            iframe.src = `https://www.youtube.com/embed/${course.videoId}?autoplay=1&rel=0&modestbranding=1`;
+            
+            document.getElementById('videoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal(e) {
+            if (!e || e.target.id === 'videoModal') {
+                document.getElementById('videoModal').classList.remove('active');
+                document.getElementById('videoFrame').src = '';
+                document.body.style.overflow = '';
+            }
+        }
+
+        // ===== ADMIN: AJOUTE VIDEO =====
+        function previewVideo() {
+            const videoId = document.getElementById('videoId').value.trim();
+            if (videoId.length === 11) {
+                document.getElementById('videoPreview').classList.remove('hidden');
+                document.getElementById('previewFrame').src = `https://www.youtube.com/embed/${videoId}`;
+            }
+        }
+
+        function handleAddVideo(e) {
+            e.preventDefault();
+            
+            const newCourse = {
+                id: 'course_' + Date.now(),
+                videoId: document.getElementById('videoId').value.trim(),
+                title: document.getElementById('videoTitle').value,
+                description: document.getElementById('videoDescription').value,
+                channel: document.getElementById('videoChannel').value,
+                duration: document.getElementById('videoDuration').value || 'N/A',
+                views: document.getElementById('videoViews').value || '0',
+                thumbnail: document.getElementById('videoThumbnail').value || '📚',
+                category: document.getElementById('videoCategory').value,
+                quality: parseInt(document.getElementById('videoQuality').value) || 80
+            };
+            
+            courses.push(newCourse);
+            localStorage.setItem('tc_courses', JSON.stringify(courses));
+            
+            showToast('✅ Videyo ajoute avek siksè!', 'success');
+            document.getElementById('addVideoForm').reset();
+            document.getElementById('videoPreview').classList.add('hidden');
+            renderCourses();
+            updateStats();
+        }
+
+        function renderVideosTable() {
+            const tbody = document.getElementById('videosTableBody');
+            tbody.innerHTML = courses.map(course => `
+                <tr>
+                    <td>${course.id.substr(0, 8)}...</td>
+                    <td>${course.title.substr(0, 40)}...</td>
+                    <td><span class="status-badge status-active">${course.category}</span></td>
+                    <td>${course.quality}%</td>
+                    <td>
+                        <button class="btn btn-danger" onclick="deleteVideo('${course.id}')" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">
+                            🗑️ Siprime
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteVideo(courseId) {
+            if (confirm('Èske ou sèten ou vle siprime videyo sa a?')) {
+                courses = courses.filter(c => c.id !== courseId);
+                localStorage.setItem('tc_courses', JSON.stringify(courses));
+                renderVideosTable();
+                renderCourses();
+                updateStats();
+                showToast('🗑️ Videyo siprime', 'success');
+            }
+        }
+
+        // ===== ADMIN: PIBLISITE =====
+        function handleSaveAds(e) {
+            e.preventDefault();
+            
+            const config = {
+                clientId: document.getElementById('adsenseClient').value,
+                slots: {
+                    header: document.getElementById('adSlotHeader').value,
+                    sidebar: document.getElementById('adSlotSidebar').value,
+                    content: document.getElementById('adSlotContent').value
+                },
+                customCode: document.getElementById('customAdCode').value,
+                enabled: document.getElementById('enableAds').checked
+            };
+            
+            localStorage.setItem('tc_ads_config', JSON.stringify(config));
+            showToast('💾 Konfigirasyon piblisite anrejistre!', 'success');
+        }
+
+        // ===== STATISTIK =====
+        function updateStats() {
+            document.getElementById('statTotalVideos').textContent = courses.length;
+            
+            const categories = [...new Set(courses.map(c => c.category))];
+            document.getElementById('statCategories').textContent = categories.length;
+            
+            // Simile vizitè jodia
+            const views = Math.floor(Math.random() * 500) + 100;
+            document.getElementById('statViews').textContent = views;
+        }
+
+        function renderCategories() {
+            const categories = {};
+            courses.forEach(c => {
+                categories[c.category] = (categories[c.category] || 0) + 1;
+            });
+            
+            const container = document.getElementById('topCategories');
+            container.innerHTML = Object.entries(categories)
+                .sort((a, b) => b[1] - a[1])
+                .map(([cat, count]) => `
+                    <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--gray-100); border-radius: 6px;">
+                        <span>${cat}</span>
+                        <span style="font-weight: bold; color: var(--primary);">${count}</span>
+                    </div>
+                `).join('');
+        }
+
+        // ===== UTILITÈ =====
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = message;
+            document.getElementById('toastIcon').textContent = type === 'success' ? '✓' : '✕';
+            toast.className = 'toast show' + (type === 'error' ? ' error' : '');
+            
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function toggleLogin() {
+            showToast('Fonksyonalite koneksyon la aktive nan vèsyon pwochen!', 'success');
+        }
+
+        // Fèmen modal ak Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeVideoModal();
+        });
+    </script>
+</body>
+</html>'''
+
+# Anrejistre fichye a
+with open('/mnt/kimi/output/tague-connaissance-complete.html', 'w', encoding='utf-8') as f:
+    f.write(html_content)
+
+print("✅ Paj konplè kreye: tague-connaissance-complete.html")
+print(f"📊 Longè: {len(html_content)} karaktè")
